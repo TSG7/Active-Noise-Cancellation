@@ -29,3 +29,37 @@ ESP32 ADC and DAC drivers
 driver/adc.h
 driver/dac.h
 Standard C++ libraries
+System Architecture
+                ┌─────────────────────┐
+                │   Primary Microphone│
+                │   Speech + Noise    │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                    ┌──────────────┐
+                    │ Preprocessing│
+                    │ Normalization│
+                    │ High-Pass    │
+                    └──────┬───────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │   LMS Adaptive      │
+                │      Filter         │◄──────────┐
+                └──────────┬──────────┘           │
+                           │                      │
+                           ▼                      │
+                    ┌──────────────┐              │
+                    │ Noise Reduced│              │
+                    │    Signal    │              │
+                    └──────┬───────┘              │
+                           │                      │
+                           ▼                      │
+                    ┌──────────────┐              │
+                    │  ESP32 DAC   │              │
+                    └──────────────┘              │
+                                                  │
+                ┌─────────────────────┐           │
+                │ Reference Microphone│           │
+                │   Correlated Noise  │───────────┘
+                └─────────────────────┘  
