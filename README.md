@@ -23,3 +23,9 @@ DAC Output
 GPIO25 / DAC_CHANNEL_1
 Breadboard
 Connecting wires
+Software / Libraries
+Arduino IDE or PlatformIO
+ESP32 ADC and DAC drivers
+driver/adc.h
+driver/dac.h
+Standard C++ libraries
